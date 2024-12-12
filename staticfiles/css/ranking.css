@@ -1,0 +1,51 @@
+/* Estilo da página de Ranking */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.table-container {
+    margin: 30px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 1000px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #2575fc;
+    color: white;
+}
+
+td {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+tr:nth-child(even) {
+    background-color: #e6e6e6;
+}
+
+tr:hover {
+    background-color: #cce0ff;
+    cursor: pointer;
+}

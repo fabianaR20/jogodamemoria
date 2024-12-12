@@ -1,0 +1,56 @@
+/* Estilo do Jogo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    background-color: #e3c8fc;
+}
+
+#tabuleiro {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-items: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.carta {
+    width: 100px;
+    height: 150px;
+    background-color: #5c6bc0;
+    color: white;
+    font-size: 32px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 150px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+.carta:hover {
+    background-color: #3f51b5;
+}
+
+.virada {
+    background-color: #c29fe2;
+    color: #ffffff;
+}
+
+#form-partida {
+    display: none;
+}
+footer{
+    background-color: rgb(153, 160, 194);
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

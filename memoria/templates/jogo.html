@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo da Memória</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Jogo da Memória</h1>
+    <div id="tabuleiro">
+        {% for carta in cartas %}
+            <div class="carta" data-valor="{{ carta }}" onclick="virarCarta(this)">
+           
+            </div>
+        {% endfor %}
+    </div>
+
+    <form id="form-partida" method="post" style="display:none;">
+        {% csrf_token %}
+        <input type="hidden" name="tentativas" id="tentativas" />
+        <input type="hidden" name="tempo_inicio" value="{{ tempo_inicio }}" />
+    </form>
+
+    <script>
+        let tentativas = 0;
+        let cartasViradas = [];
+        let valoresCartas = [];
+
+        function virarCarta(carta) {
+            if (cartasViradas.length < 2 && !carta.classList.contains('virada')) {
+                carta.classList.add('virada');
+                carta.innerHTML = carta.getAttribute('data-valor');
+                cartasViradas.push(carta);
+                valoresCartas.push(carta.getAttribute('data-valor'));
+
+                tentativas++;
+                document.getElementById('tentativas').value = tentativas;
+
+                if (cartasViradas.length === 2) {
+                    verificarCartas();
+                }
+            }
+        }
+
+        function verificarCartas() {
+            if (valoresCartas[0] === valoresCartas[1]) {
+                cartasViradas = [];
+                valoresCartas = [];
+            } else {
+                setTimeout(function() {
+                    cartasViradas[0].classList.remove('virada');
+                    cartasViradas[1].classList.remove('virada');
+                    cartasViradas[0].innerHTML = '?';
+                    cartasViradas[1].innerHTML = '?';
+                    cartasViradas = [];
+                    valoresCartas = [];
+                }, 1000);
+            }
+
+            if (document.querySelectorAll('.virada').length === document.querySelectorAll('.carta').length) {
+                document.getElementById('form-partida').submit();
+            }
+        }
+    </script>
+    <footer>
+       <p>Disciplina: Programação para Internet</p> 
+       <p>Professor: Marcelo Figueiredo Barbosa Júnior</p>
+       <p>Componentes: Fabiana, Conceição e Marília</p>
+       <p> IFRN - Campus Santa Cruz/RN</p>
+       <p>Todos os direitos reservados ⓒ</p> 
+
+    </footer>
+</body>
+</html>
